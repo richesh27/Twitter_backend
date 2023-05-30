@@ -46,17 +46,6 @@ class TweetRepository {
         }
     }
 
-    async update(TweetId, data){
-        try {
-            const tweet = await Tweet.findByIdAndUpdate(TweetId, data, {new:true});      
-            return tweet;      
-        } 
-        catch (error) {
-            console.log("Something wrong in the repo tweet layer")
-            console.log(error)
-        }
-    }
-
     async destroy(id){
         try {
             const tweet = await Tweet.findByIdAndRemove(id);      
