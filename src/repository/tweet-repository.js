@@ -1,6 +1,10 @@
 import Tweet from '../models/tweet.js'
+import CrudRepository from './crud-repository.js';
 
-class TweetRepository {
+class TweetRepository extends CrudRepository {
+    constructor (){
+        super(Tweet)
+    }
 
     async create(data){
         try {
@@ -9,17 +13,6 @@ class TweetRepository {
         } 
         catch (error) {
             console.log("Something wrong in the repo tweet layer");
-            console.log(error)
-        }
-    }
-
-    async get(id){
-        try {
-            const tweet = await Tweet.findById(id);      
-            return tweet;      
-        } 
-        catch (error) {
-            console.log("Something wrong in the repo tweet layer")
             console.log(error)
         }
     }
@@ -46,15 +39,16 @@ class TweetRepository {
         }
     }
 
-    async destroy(id){
+    async find(id){
         try {
-            const tweet = await Tweet.findByIdAndRemove(id);      
-            return tweet;      
+            const tweet = await Tweet.findById(id).populate({path: 'likes'});  // this populate func. should always be attached to a mongoose query based object not an promise based object
+            return tweet;
         } 
         catch (error) {
             console.log("Something wrong in the repo tweet layer")
             console.log(error)
         }
     }
+
 }
-export default TweetRepository;
+export default TweetRepository; 
