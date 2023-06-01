@@ -19,7 +19,7 @@ class LikeService {
             throw new Error('unknown model type')
         }
 
-        const exists = await this.likeRepository.findByUserAndLikeable({
+        const exists = await this.likeRepository.findByUserAndLikeable({ // we find whether a like has been done or not
             user: userId,
             onModel: modelType,
             likeable: modelId
