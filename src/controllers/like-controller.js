@@ -1,0 +1,23 @@
+import LikeService from '../services/like-service.js'
+
+const likeService = new LikeService();
+
+export const toggleLike = async(req,res) =>{
+    try {
+        const response = await likeService.toggleLike(req.query.modelId, req.query.modelType, req.body.userId);
+        return res.status(201).json({
+            success : true,
+            data : response,
+            err : {},
+            message : "Successfully toggled like"
+        }); 
+    } 
+    catch (error) {
+        return res.status(500).json({
+            success : false,
+            data : {},
+            err : error,
+            message : "did not toggled like"
+        }); 
+    }
+}
