@@ -11,6 +11,7 @@ export const authenticate = (req,res,next) => {
             })
         }
         req.user = user;
+        console.log(req.user);
         next();
     })(req,res,next)
 }
