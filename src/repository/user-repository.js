@@ -8,4 +8,4 @@ class UserRepository extends CrudRepository{
     }
 }
 
-export default UserRepository
+export default UserRepository;
