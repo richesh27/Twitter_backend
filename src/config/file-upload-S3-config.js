@@ -17,12 +17,12 @@ const upload = multer({
     storage : multerS3({
         s3: s3,
         bucket : process.env.BUCKET_NAME,
-        acl : "public-read",
-        metadata: function (req, file, cb) {
-            cb(null, {fieldName: file.fieldname});
+        // acl : 'public-read',
+        metadata: function (req, file, callback) {
+            callback(null, {fieldName: file.fieldname});
         },
-        key: function (req, file, cb) {
-            cb(null, Date.now().toString())
+        key: function (req, file, callback) {
+            callback(null, Date.now().toString())
         }
     })
 });
