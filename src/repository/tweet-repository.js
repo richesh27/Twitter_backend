@@ -14,6 +14,7 @@ class TweetRepository extends CrudRepository {
         catch (error) {
             console.log("Something wrong in the repo tweet layer");
             console.log(error)
+            throw error;
         }
     }
 
